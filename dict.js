@@ -11,9 +11,15 @@ class Dictionary {
         console.log("Invalid key! Please use keys from A-Z.");
         return;
       }
-    this.dictionary.push(key); // Add key to array
-    const index = this.getIndex(key);
-    this.variables[index] = value; // Add value to array
+    else if(this.getIndex(key) === false) {
+        this.dictionary.push(key); // Add key to array
+        const index = this.getIndex(key);
+        this.variables[index] = value; // Add value to array
+    }
+    else {
+        const index = this.getIndex(key);
+        this.variables[index] = value; // Add value to array
+    }
   };
   
   // Method to get a value by key
@@ -52,10 +58,11 @@ class Dictionary {
   // Test the Dictionary implementation
   const myDictionary = new Dictionary();
   
-  myDictionary.add('f', 6);
+  myDictionary.add('B', 6);
   myDictionary.add('B', 5);
   myDictionary.add('G', 7);
   myDictionary.add('J', 19);
-  console.log(myDictionary.get('A')* myDictionary.get('J')); // Output: A*B 
+  myDictionary.add('B', 19);
+  console.log(myDictionary.get('B')* myDictionary.get('G')); // Output: A*B 
   console.log(myDictionary.dictionary); // Output: G*J
   console.log(myDictionary.variables); // Output: G*J
