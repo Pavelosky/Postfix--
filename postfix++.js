@@ -19,9 +19,9 @@ class Stack {
 }
 
 // Define Dictionary class
-class Dictionary {
+class symbolTable {
     constructor() {
-        this.dictionary = []; // Using an array to store keys
+        this.keys = []; // Using an array to store keys
         this.variables = []; // Using an array to store values
     }
 
@@ -34,7 +34,7 @@ class Dictionary {
         }
         //   check if key already exists, if not add key and value
         else if (this.getIndex(key) === false) {
-            this.dictionary.push(key); // Add key to array
+            this.keys.push(key); // Add key to array
             const index = this.getIndex(key);
             this.variables[index] = value; // Add value to array
         }
@@ -57,7 +57,7 @@ class Dictionary {
         if (index !== -1) {
             return this.variables[index]; // Return value if key exists
         }
-        return undefined; // Return undefined if key does not exist
+        return // Return if key does not exist
     };
 
     // Helper method to get index of a key
@@ -66,8 +66,8 @@ class Dictionary {
             console.log("Invalid key! Please use keys from A-Z.");
             return;
         }
-        for (let i = 0; i < this.dictionary.length; i++) {
-            if (this.dictionary[i] === key) {
+        for (let i = 0; i < this.keys.length; i++) {
+            if (this.keys[i] === key) {
                 return i; // Return index if key exists
             }
         }
@@ -80,12 +80,12 @@ class Dictionary {
     };
 
 }
-
+// Helper function to check if a token is a capital letter
 function isLetter(str) {
     return str.length === 1 && str.match(/[A-Z]/i);
 }
 
-dict = new Dictionary();
+dict = new symbolTable();
 
 function evaluatePostfix(expression) {
     let stack = new Stack();
@@ -136,13 +136,14 @@ function startInteractiveSession() {
             rl.close();
         } else {
             const tokens = expression.split(' ');
+            // Check if the user is trying to add a variable
             if (tokens.length === 3 && tokens[2] === '=') {
                 const variable = tokens[0];
                 const value = Number(tokens[1]);
                 dict.add(variable, value);
                 console.log(`Added variable ${variable} with value ${value}`);
                 startInteractiveSession();
-            } else {
+            } else {    // Evaluate the expression
                 const result = evaluatePostfix(expression);
                 console.log(`Result: ${result}`);
                 startInteractiveSession();
