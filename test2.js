@@ -19,21 +19,29 @@ class Stack {
     isEmpty() {
         return this.items.length === 0;
     }
-}
 
+}
+  
 function isLetter(str) {
-    return str.length === 1 && str.match(/[a-z]/i);
+    return str.length === 1 && str.match(/[A-Z]/i);
 }
 
 function evaluatePostfix(expression) {
     const stack = new Stack();
-    const variables = {};
 
     for (let token of expression.split(' ')) {
         if (!isNaN(token)) {
             stack.push(Number(token));
         } else if (isLetter(token)) {
-            stack.push(token); 
+            if (variables[token]) {
+                stack.push(variables[token]);
+            } else {
+                stack.push(token);
+            }
+        } else if (token === '=') {
+            const value = stack.pop();
+            const variable = stack.pop();
+            variables[variable] = value;
         } else {
             // Handle operators
             const operand2 = stack.pop();
@@ -52,9 +60,6 @@ function evaluatePostfix(expression) {
                 case '/':
                     stack.push(operand1 / operand2);
                     break;
-                case '=':
-                    Object.assign(variables, {operand1: operand2});
-                    break;
                 default:
                     return "Invalid operator";
             }
@@ -72,12 +77,19 @@ const rl = readline.createInterface({
 });
 
 function startInteractiveSession() {
-    rl.question('Enter a postfix expression (or type "exit" to quit): ', (expression) => {
-        if (expression === 'exit') {
+    rl.question('Enter a postfix expression or variable assignment (or type "exit" to quit): ', (input) => {
+        if (input === 'exit') {
             rl.close();
         } else {
-            const result = evaluatePostfix(expression);
-            console.log(`Result: ${result}`);
+            const tokens = input.split(' ');
+            if (tokens.length === 3 && tokens[2] === '=') {
+                const variable = tokens[0];
+                const value = Number(tokens[2]);
+                variables[variable] = value;
+            } else {
+                const result = evaluatePostfix(input);
+                console.log(`Result: ${result}`);
+            }
             startInteractiveSession();
         }
     });
