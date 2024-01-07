@@ -11,11 +11,13 @@ class Dictionary {
         console.log("Invalid key! Please use keys from A-Z.");
         return;
       }
+    //   check if key already exists
     else if(this.getIndex(key) === false) {
         this.dictionary.push(key); // Add key to array
         const index = this.getIndex(key);
         this.variables[index] = value; // Add value to array
     }
+    //  if key exists, replace value
     else {
         const index = this.getIndex(key);
         this.variables[index] = value; // Add value to array
@@ -49,6 +51,7 @@ class Dictionary {
     return false; // Return false if key does not exist
   };
 
+//   check if key is between A and Z
   isValidKey(key) {
     return /^[A-Z]$/.test(key);
   };
