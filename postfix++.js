@@ -18,7 +18,7 @@ class Stack {
     }
 }
 
-// Define the Dictionary class
+// Define Dictionary class
 class Dictionary {
     constructor() {
         this.dictionary = []; // Using an array to store keys
@@ -27,11 +27,12 @@ class Dictionary {
 
     // Method to add a key-value pair
     add(key, value) {
+        //  check if key is valid
         if (!this.isValidKey(key)) {
             console.log("Invalid key! Please use keys from A-Z.");
             return;
         }
-        //   check if key already exists
+        //   check if key already exists, if not add key and value
         else if (this.getIndex(key) === false) {
             this.dictionary.push(key); // Add key to array
             const index = this.getIndex(key);
@@ -46,11 +47,13 @@ class Dictionary {
 
     // Method to get a value by key
     get(key) {
+        // check if key is valid
         if (!this.isValidKey(key)) {
             console.log("Invalid key! Please use keys from A-Z.");
             return;
         }
         const index = this.getIndex(key);
+        // 
         if (index !== -1) {
             return this.variables[index]; // Return value if key exists
         }
@@ -137,6 +140,7 @@ function startInteractiveSession() {
                 const variable = tokens[0];
                 const value = Number(tokens[1]);
                 dict.add(variable, value);
+                console.log(`Added variable ${variable} with value ${value}`);
                 startInteractiveSession();
             } else {
                 const result = evaluatePostfix(expression);
