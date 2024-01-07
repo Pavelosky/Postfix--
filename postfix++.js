@@ -117,7 +117,6 @@ function evaluatePostfix(expression) {
             }
         }
     }
-
     return stack.pop(); // Result will be at the top of the stack
 }
 
