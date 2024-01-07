@@ -20,16 +20,6 @@ class Dictionary {
     return undefined; // Return undefined if key does not exist
   };
   
-  // Method to remove a key-value pair by key
-  // this is actually not needed for the postfix calculator
-  remove(key) {
-    const index = this.getIndex(key);
-    if (index !== -1) {
-      this.dictionary.splice(index, 1); // Remove key-value pair
-      this.variables.splice(index, 1); // Remove key-value pair
-    }
-  };
-  
   // Helper method to get index of a key
   getIndex(key) {
     for (let i = 0; i < this.dictionary.length; i++) {
