@@ -66,6 +66,6 @@ class Dictionary {
   myDictionary.add('G', 7);
   myDictionary.add('J', 19);
   myDictionary.add('B', 19);
-  console.log(myDictionary.get('B')* myDictionary.get('G')); // Output: A*B 
+  console.log(myDictionary.get('B')* myDictionary.get('f')); // Output: A*B 
   console.log(myDictionary.dictionary); // Output: G*J
   console.log(myDictionary.variables); // Output: G*J
