@@ -1,6 +1,3 @@
-// Student number:
-// 210323041 
-
 // Define stack 
 class Stack {
     constructor() {
