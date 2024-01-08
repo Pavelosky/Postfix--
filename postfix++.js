@@ -1,4 +1,7 @@
-// Define Stack class   
+// Student number:
+// 210323041 
+
+// Define stack 
 class Stack {
     constructor() {
         this.items = [];
@@ -18,11 +21,11 @@ class Stack {
     }
 }
 
-// Define Dictionary class
+// Define hash table
 class symbolTable {
     constructor() {
         this.keys = []; // Using an array to store keys
-        this.variables = []; // Using an array to store values
+        this.values = []; // Using an array to store values
     }
 
     // Method to add a key-value pair
@@ -36,12 +39,12 @@ class symbolTable {
         else if (this.getIndex(key) === false) {
             this.keys.push(key); // Add key to array
             const index = this.getIndex(key);
-            this.variables[index] = value; // Add value to array
+            this.values[index] = value; // Add value to array
         }
         //  if key exists, replace value
         else {
             const index = this.getIndex(key);
-            this.variables[index] = value; // Add value to array
+            this.values[index] = value; // Add value to array
         }
     };
 
@@ -55,7 +58,7 @@ class symbolTable {
         const index = this.getIndex(key);
         // 
         if (index !== -1) {
-            return this.variables[index]; // Return value if key exists
+            return this.values[index]; // Return value if key exists
         }
         return // Return if key does not exist
     };
