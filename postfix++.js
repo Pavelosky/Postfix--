@@ -99,21 +99,21 @@ function evaluatePostfix(expression) {
             }
         } else {
             // Handle operators
-            const operand2 = stack.pop();
-            const operand1 = stack.pop();
+            let number2 = stack.pop();
+            let number1 = stack.pop();
 
             switch (token) {
                 case '+':
-                    stack.push(operand1 + operand2);
+                    stack.push(number1 + number2);
                     break;
                 case '-':
-                    stack.push(operand1 - operand2);
+                    stack.push(number1 - number2);
                     break;
                 case '*':
-                    stack.push(operand1 * operand2);
+                    stack.push(number1 * number2);
                     break;
                 case '/':
-                    stack.push(operand1 / operand2);
+                    stack.push(number1 / number2);
                     break;
                 default:
                     return "Invalid operator";
@@ -135,11 +135,11 @@ function startInteractiveSession() {
         if (expression === 'exit') {
             rl.close();
         } else {
-            const tokens = expression.split(' ');
+            let tokens = expression.split(' ');
             // Check if the user is trying to add a variable
             if (tokens.length === 3 && tokens[2] === '=') {
-                const variable = tokens[0];
-                const value = Number(tokens[1]);
+                let variable = tokens[0];
+                let value = Number(tokens[1]);
                 dict.add(variable, value);
                 console.log(`Added variable ${variable} with value ${value}`);
                 startInteractiveSession();
